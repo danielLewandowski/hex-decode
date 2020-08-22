@@ -3,7 +3,9 @@ import sys
 args = sys.argv
 
 if len(args) == 1:
-	print('Usage: hexdecode [file]')
+	print('Usage: hexdecode [options] [file]')
+	print('-a Convert output to ASCII characters')
+
 	sys.exit()
 
 f = open(args[1], 'r')
@@ -11,12 +13,19 @@ f = open(args[1], 'r')
 phrase = f.read()
 phrase = phrase.split()
 
-output = ""
+dec = ""
+chars = ""
 
 for num in phrase:
-	output += f'{int(num, 16)} '
+	conv = int(num, 16)
 
-print(output)
+	dec += f'{conv} '
+	chars += f'{chr(conv)}'
 
+print(dec)
 
-
+div = ""
+for x in range(0, len(dec)):
+	div += '-'
+print(div)
+print(chars)
